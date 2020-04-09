@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package br.fjn.edu.jevento.domain;
 
 import java.util.List;
 import java.util.UUID;
