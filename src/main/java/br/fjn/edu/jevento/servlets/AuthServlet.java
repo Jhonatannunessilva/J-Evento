@@ -42,5 +42,11 @@ public class AuthServlet extends HttpServlet {
         req.setAttribute("loginErrorMsg", "Login Inválido! Informações enviadas estão incorretas");
         RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
         dispatcher.forward(req, resp);
-    }   
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().invalidate();
+        resp.sendRedirect("login.jsp");
+    }
 }
