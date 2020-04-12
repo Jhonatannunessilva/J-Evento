@@ -25,6 +25,8 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String operation = req.getParameter("operation");
+        
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
@@ -36,7 +38,35 @@ public class UserServlet extends HttpServlet {
             users = new LinkedList<User>();
         }
         
-        users.add(new User(name, email, password));
+        if (operation == "PUT"){
+            String id = req.getParameter("id");
+            
+            for (User user : users) {
+                if(user.getId().equalsIgnoreCase(id)){
+                    user.setName(name);
+                    user.setEmail(email);
+                    user.setPassword(password);
+                    break;
+                }
+            }
+        }else {
+            users.add(new User(name, email, password));
+        }
         context.setAttribute("users", users);
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<User> users = (List<User>) getServletContext().getAttribute("users");
+        String userId = req.getParameter("userId");
+        
+        for (User user : users) {
+            if(user.getId().equalsIgnoreCase(userId)){
+                req.setAttribute("userToUpdate", user);
+                break;
+            }
+        }
+        
+        req.getRequestDispatcher("user/update.jsp").forward(req, resp);
     }
 }
