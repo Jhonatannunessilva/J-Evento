@@ -28,6 +28,7 @@ public class EventServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext context = getServletContext();
+        String operation = req.getParameter("operation");
         
         List<Customer> customers = (List<Customer>) context.getAttribute("customers");
         
@@ -65,8 +66,43 @@ public class EventServlet extends HttpServlet {
             events = new LinkedList<Event>();
         }
         
-        events.add(new Event(name_event, address, customerToEvent, value));
+        if (operation == "PUT"){
+            String id = req.getParameter("id");
+            
+            customerToEvent.setName(name_customer);
+            customerToEvent.setCpf(cpf);
+            customerToEvent.setPhone_number(phone_number);
+            customerToEvent.setEmail(email);
+            
+            for (Event event : events) {
+                if(event.getId().equalsIgnoreCase(id)){
+                    event.setName(name_event);
+                    event.setAddress(address);
+                    event.setCustomer(customerToEvent);
+                    event.setValue(value);
+                    break;
+                }
+            }
+        }else {
+            events.add(new Event(name_event, address, customerToEvent, value));
+        }
+        
         context.setAttribute("customers", customers);
         context.setAttribute("events", events);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Event> events = (List<Event>) getServletContext().getAttribute("events");
+        String eventId = req.getParameter("eventId");
+        
+        for (Event event : events) {
+            if(event.getId().equalsIgnoreCase(eventId)){
+                req.setAttribute("eventToUpdate", event);
+                break;
+            }
+        }
+        
+        req.getRequestDispatcher("event/update.jsp").forward(req, resp);
     }
 }
