@@ -58,16 +58,27 @@ public class UserServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> users = (List<User>) getServletContext().getAttribute("users");
+        ServletContext context = getServletContext();
+        List<User> users = (List<User>) context.getAttribute("users");
+        
+        String operation = req.getParameter("operation");
         String userId = req.getParameter("userId");
         
         for (User user : users) {
             if(user.getId().equalsIgnoreCase(userId)){
-                req.setAttribute("userToUpdate", user);
-                break;
+                if (operation == "DELETE"){
+                    users.remove(user);
+                    context.setAttribute("users", users);
+                    
+                    resp.sendRedirect("home.jsp");
+                    break;
+                }else {
+                    req.setAttribute("userToUpdate", user);
+                    
+                    req.getRequestDispatcher("user/update.jsp").forward(req, resp);
+                    break;
+                }
             }
         }
-        
-        req.getRequestDispatcher("user/update.jsp").forward(req, resp);
     }
 }
