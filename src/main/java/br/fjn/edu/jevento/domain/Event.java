@@ -17,7 +17,7 @@ public class Event {
     private Address address;
     private Customer customer;
     private float value;
-
+    
     public Event(String name, Address address, Customer customer, float value) {
         this.id = UUID.randomUUID().toString();
         this.name = name;

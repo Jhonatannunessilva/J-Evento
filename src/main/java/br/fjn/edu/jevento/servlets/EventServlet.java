@@ -94,16 +94,28 @@ public class EventServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Event> events = (List<Event>) getServletContext().getAttribute("events");
+        ServletContext context = getServletContext();
+        List<Event> events = (List<Event>) context.getAttribute("events");
+        
+        String operation = req.getParameter("operation");
         String eventId = req.getParameter("eventId");
         
         for (Event event : events) {
             if(event.getId().equalsIgnoreCase(eventId)){
-                req.setAttribute("eventToUpdate", event);
-                break;
+                
+                if (operation == "DELETE"){
+                    events.remove(event);
+                    context.setAttribute("events", events);
+                    
+                    resp.sendRedirect("home.jsp");
+                    break;
+                }else {
+                    req.setAttribute("eventToUpdate", event);
+                    
+                    req.getRequestDispatcher("event/update.jsp").forward(req, resp);
+                    break;
+                }
             }
         }
-        
-        req.getRequestDispatcher("event/update.jsp").forward(req, resp);
     }
 }
