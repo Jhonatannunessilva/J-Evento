@@ -53,6 +53,7 @@ public class UserServlet extends HttpServlet {
             users.add(new User(name, email, password));
         }
         context.setAttribute("users", users);
+        resp.sendRedirect("home.jsp");
     }
     
     @Override

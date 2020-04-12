@@ -89,6 +89,7 @@ public class EventServlet extends HttpServlet {
         
         context.setAttribute("customers", customers);
         context.setAttribute("events", events);
+        resp.sendRedirect("home.jsp");
     }
 
     @Override
