@@ -60,16 +60,28 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Customer> customers = (List<Customer>) getServletContext().getAttribute("customers");
+        ServletContext context = getServletContext();
+        List<Customer> customers = (List<Customer>) context.getAttribute("customers");
+        
+        String operation = req.getParameter("operation");
         String customerId = req.getParameter("customerId");
         
         for (Customer customer : customers) {
             if(customer.getId().equalsIgnoreCase(customerId)){
-                req.setAttribute("customerToUpdate", customer);
-                break;
+                
+                if (operation == "DELETE"){
+                    customers.remove(customer);
+                    context.setAttribute("customers", customers);
+                    
+                    resp.sendRedirect("home.jsp");
+                    break;
+                }else {
+                    req.setAttribute("customerToUpdate", customer);
+                    
+                    req.getRequestDispatcher("customer/update.jsp").forward(req, resp);
+                    break;
+                }
             }
-        }
-        
-        req.getRequestDispatcher("customer/update.jsp").forward(req, resp);
+        }  
     }
 }
