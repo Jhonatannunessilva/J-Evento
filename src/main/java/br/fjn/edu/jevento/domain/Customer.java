@@ -16,13 +16,18 @@ public class Customer {
     private String id;
     private String name;
     private String cpf;
-    private List<String> phone_numbers;
+    private String phone_number;
+    private String email;
 
-    public Customer(String name, String cpf, List<String> phone_numbers) {
+    public Customer() {
+    }
+    
+    public Customer(String name, String cpf, String phone_number, String email) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.cpf = cpf;
-        this.phone_numbers = phone_numbers;
+        this.phone_number = phone_number;
+        this.email = email;
     }
 
     public String getId() {
@@ -45,12 +50,20 @@ public class Customer {
         this.cpf = cpf;
     }
 
-    public List<String> getPhone_numbers() {
-        return phone_numbers;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public void setPhone_numbers(List<String> phone_numbers) {
-        this.phone_numbers = phone_numbers;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }
