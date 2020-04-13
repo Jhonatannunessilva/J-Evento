@@ -5,7 +5,7 @@
  */
 package br.fjn.edu.jevento.servlets;
 
-import br.fjn.edu.jevento.domain.User;
+import br.fjn.edu.jevento.domain.Customer;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,65 +20,68 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhonatan
  */
-@WebServlet("/users")
-public class UserServlet extends HttpServlet {
-
+@WebServlet("/customers")
+public class CustomerServlet extends HttpServlet {
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String operation = req.getParameter("operation");
         
         String name = req.getParameter("name");
+        String cpf = req.getParameter("cpf");
+        String phone_number = req.getParameter("phone_number");
         String email = req.getParameter("email");
-        String password = req.getParameter("password");
         
         ServletContext context = getServletContext();
-        List<User> users = (List<User>) context.getAttribute("users");
+        List<Customer> customers = (List<Customer>) context.getAttribute("customers");
         
-        if (users == null) {
-            users = new LinkedList<User>();
+        if (customers == null) {
+            customers = new LinkedList<Customer>();
         }
         
         if (operation == "PUT"){
             String id = req.getParameter("id");
             
-            for (User user : users) {
-                if(user.getId().equalsIgnoreCase(id)){
-                    user.setName(name);
-                    user.setEmail(email);
-                    user.setPassword(password);
+            for (Customer customer : customers) {
+                if(customer.getId().equalsIgnoreCase(id)){
+                    customer.setName(name);
+                    customer.setCpf(cpf);
+                    customer.setPhone_number(phone_number);
+                    customer.setEmail(email);
                     break;
                 }
             }
         }else {
-            users.add(new User(name, email, password));
+            customers.add(new Customer(name, cpf, phone_number, email));
         }
-        context.setAttribute("users", users);
+        context.setAttribute("customers", customers);
         resp.sendRedirect("home.jsp");
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletContext context = getServletContext();
-        List<User> users = (List<User>) context.getAttribute("users");
+        List<Customer> customers = (List<Customer>) context.getAttribute("customers");
         
         String operation = req.getParameter("operation");
-        String userId = req.getParameter("userId");
+        String customerId = req.getParameter("customerId");
         
-        for (User user : users) {
-            if(user.getId().equalsIgnoreCase(userId)){
+        for (Customer customer : customers) {
+            if(customer.getId().equalsIgnoreCase(customerId)){
+                
                 if (operation == "DELETE"){
-                    users.remove(user);
-                    context.setAttribute("users", users);
+                    customers.remove(customer);
+                    context.setAttribute("customers", customers);
                     
                     resp.sendRedirect("home.jsp");
                     break;
                 }else {
-                    req.setAttribute("userToUpdate", user);
+                    req.setAttribute("customerToUpdate", customer);
                     
-                    req.getRequestDispatcher("user/update.jsp").forward(req, resp);
+                    req.getRequestDispatcher("customer/update.jsp").forward(req, resp);
                     break;
                 }
             }
-        }
+        }  
     }
 }
