@@ -11,32 +11,32 @@
 		<a class="logo" href="#">J-Evento</a>
 		<ul class="nav-menu">
 			<li>				
-				<a href="../password/password.html">Alterar Senha</a>
+				<a href="${pageContext.request.contextPath}/users?userId=${userLogged}">Alterar Usu�rio</a>
 			</li>
 			<li>				
-				<a href="../auth/login.html">Sair</a>
+				<a href="${pageContext.request.contextPath}/logout">Sair</a>
 			</li>
 		</ul>
 	</nav>
 	<div class="sidebar">
 		<ul class="sidebar-nav">
 			<li>				
-				<a href="#">Eventos</a>
+				<a href="${pageContext.request.contextPath}/event/events.jsp">Eventos</a>
 			</li>
 			<li>				
-				<a href="#">Clientes</a>
+				<a href="${pageContext.request.contextPath}/customer/customers.jsp">Clientes</a>
 			</li>
 			<li>				
-				<a href="#">Funcionários</a>
+				<a href="${pageContext.request.contextPath}/user/users.jsp">Funcionários</a>
 			</li>
 			<li>				
-				<a href="../event/cadastro_evento.html">Novo Evento</a>
+				<a href="${pageContext.request.contextPath}/event/create.jsp">Novo Evento</a>
 			</li>
 			<li>				
-				<a href="../customer/cadastro.html">Cadastro de Cliente</a>
+				<a href="${pageContext.request.contextPath}/customer/create.jsp">Cadastro de Cliente</a>
 			</li>
 			<li>				
-				<a href="../users/User_cadastro.html">Cadastro de Funcionario</a>
+				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionario</a>
 			</li>
 		</ul>
 	</div>
@@ -44,8 +44,8 @@
 		<h2>Alterar Usuário</h2>
                 
 		<form action="../auth/login.html" class="formulario" method="post"> 
-                    <input type="hide" value="${userToUpdate.id}" name="id">
-                    <input type="hide" value="PUT" name="operation">
+                    <input type="hide" value="${userToUpdate.id}" name="id" style="display:none">
+                    <input type="hide" value="PUT" name="operation" style="display:none">
 
         <div class="field">
                 <label for="name">Nome:</label>
