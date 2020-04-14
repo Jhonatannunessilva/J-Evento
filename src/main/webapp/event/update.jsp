@@ -44,8 +44,9 @@
             <h2> Cliente </h2>
                     
             <form action="${pageContext.request.contextPath}/events" class="formulario" method="post"> 
-                <input type="hide" value="${eventToUpdate.id}" name="id" style="display:none">
-                <input type="hide" value="PUT" name="operation" style="display:none">
+                <input type="text" value="${eventToUpdate.id}" name="id" style="display:none">
+                <input type="text" value="${eventToUpdate.customer.id}" name="customerId" style="display:none">
+                <input type="text" value="PUT" name="operation" style="display:none">
                 
                 <div class="field">
                     <label for="name">Nome:</label>
