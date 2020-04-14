@@ -115,6 +115,11 @@ public class EventServlet extends HttpServlet {
                     
                     resp.sendRedirect("home.jsp");
                     break;
+                }else if (operation == "GET"){
+                    req.setAttribute("eventView", event);
+                    
+                    req.getRequestDispatcher("event/view.jsp").forward(req, resp);
+                    break;
                 }else {
                     req.setAttribute("eventToUpdate", event);
                     
