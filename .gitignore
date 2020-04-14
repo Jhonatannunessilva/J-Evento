@@ -3,3 +3,6 @@ jevento.iml
 nb-configuration.xml
 .vscode
 /target/
+.project
+.settings/
+.classpath
