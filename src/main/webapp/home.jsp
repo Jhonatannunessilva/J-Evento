@@ -13,32 +13,32 @@
 		<a class="logo" href="#">J-Evento</a>
 		<ul class="nav-menu">
 			<li>				
-				<a href="../password/password.html">Alterar Senha</a>
+				<a href="${pageContext.request.contextPath}/users?userId=${userLogged}">Alterar Usuário</a>
 			</li>
 			<li>				
-				<a href="../auth/login.html">Sair</a>
+				<a href="${pageContext.request.contextPath}/logout">Sair</a>
 			</li>
 		</ul>
 	</nav>
 	<div class="sidebar">
 		<ul class="sidebar-nav">
 			<li>				
-				<a href="#">Eventos</a>
+				<a href="${pageContext.request.contextPath}/event/events.jsp">Eventos</a>
 			</li>
 			<li>				
-				<a href="#">Clientes</a>
+				<a href="${pageContext.request.contextPath}/customer/customers.jsp">Clientes</a>
 			</li>
 			<li>				
-				<a href="#">FuncionÃ¡rios</a>
+				<a href="${pageContext.request.contextPath}/user/users.jsp">FuncionÃ¡rios</a>
 			</li>
 			<li>				
-				<a href="../event/cadastro_evento.html">Novo Evento</a>
+				<a href="${pageContext.request.contextPath}/event/create.jsp">Novo Evento</a>
 			</li>
 			<li>				
-				<a href="../customer/cadastro.html">Cadastro de Cliente</a>
+				<a href="${pageContext.request.contextPath}/customer/create.jsp">Cadastro de Cliente</a>
 			</li>
 			<li>				
-				<a href="../users/User_cadastro.html">Cadastro de Funcionario</a>
+				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionario</a>
 			</li>
 		</ul>
 	</div>
