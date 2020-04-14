@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -9,93 +8,100 @@
   </head>
   <body>
     <nav class="nav-main">
-      <a class="logo" href="#">J-Evento</a>
-      <ul class="nav-menu">
-        <li>				
-          <a href="../password/password.html">Alterar Senha</a>
-        </li>
-        <li>				
-          <a href="../auth/login.html">Sair</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="sidebar">
-      <ul class="sidebar-nav">
-        <li>				
-          <a href="#">Eventos</a>
-        </li>
-        <li>				
-          <a href="#">Clientes</a>
-        </li>
-        <li>				
-          <a href="#">Funcionários</a>
-        </li>
-        <li>				
-          <a href="../event/cadastro_evento.html">Novo Evento</a>
-        </li>
-        <li>				
-          <a href="../customer/cadastro.html">Cadastro de Cliente</a>
-        </li>
-        <li>				
-          <a href="../users/User_cadastro.html">Cadastro de Funcionario</a>
-        </li>
-      </ul>
-    </div>
-	<div class="main">
-		<h2>Evento</h2>
-		<form action="/events" class="formulario" method="post"> 
-                    <input type="hide" value="${eventToUpdate.id}" name="id">
-                    <input type="hide" value="PUT" name="operation">
-            <p> Evento </p>
-
-        <div class="field">
-                <label for="name">Nome:</label>
-                <input type="text" class="form-input" id="name" name="name" value="${eventToUpdate.name}" placeholder="Digite o Nome do Evento">
-        </div>
-
-        <div class="field">
-                <label for="value">Valor:</label>
-                <input type="text" class="form-input" id="value" name="value" value="${eventToUpdate.value}" placeholder="Digite o Valor">
-        </div>
-    
-        <p> Endereço </p>
-
-        <div class="field">
-            <label for="street">Rua:</label>
-            <input type="text" class="form-input" id="street" name="street" value="${eventToUpdate.address.street}" placeholder="Digite a Rua">
-        </div>
-
-        <div class="field">
-            <label for="number">Número:</label>
-            <input type="text" class="form-input" id="number" value="${eventToUpdate.address.number}" name="number">
-        </div>
-
-        <div class="field">
-            <label for="neighborhood">Bairro:</label>
-            <input type="text" class="form-input" id="neighborhood" value="${eventToUpdate.address.neighborhood}" name="neighborhood">
-        </div>
-
-        <div class="field">
-            <label for="city">Cidade:</label>
-            <input type="text" class="form-input" id="city" value="${eventToUpdate.address.city}" name="city">
-        </div>
-
-        <p> Cliente </p>
-        
-             
-        <select name="customerId" class="form-input" id="cliente">
-            
-             <option value="text">Selecione o cliente</option>
-             
-             <c:forEach items="${customers}" var="customer" >
-                <option value="${customer.id}">${customer.name}</option> 
-            </c:forEach>
-                             
-        </select>
-
-            <input type="submit" class="btn-input" value="Salvar">
-            <p><a class="formlink" href="../Customer/cadastro.html" target="_blank">Novo Cliente</a></p>
-          </form>
+		<a class="logo" href="#">J-Evento</a>
+		<ul class="nav-menu">
+			<li>				
+				<a href="${pageContext.request.contextPath}/users?userId=${userLogged}">Alterar Usu�rio</a>
+			</li>
+			<li>				
+				<a href="${pageContext.request.contextPath}/logout">Sair</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="sidebar">
+		<ul class="sidebar-nav">
+			<li>				
+				<a href="${pageContext.request.contextPath}/event/events.jsp">Eventos</a>
+			</li>
+			<li>				
+				<a href="${pageContext.request.contextPath}/customer/customers.jsp">Clientes</a>
+			</li>
+			<li>				
+				<a href="${pageContext.request.contextPath}/user/users.jsp">Funcionários</a>
+			</li>
+			<li>				
+				<a href="${pageContext.request.contextPath}/event/create.jsp">Novo Evento</a>
+			</li>
+			<li>				
+				<a href="${pageContext.request.contextPath}/customer/create.jsp">Cadastro de Cliente</a>
+			</li>
+			<li>				
+				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionario</a>
+			</li>
+		</ul>
 	</div>
+        <div class="main">
+            <h2> Cliente </h2>
+                    
+            <form action="${pageContext.request.contextPath}/events" class="formulario" method="post"> 
+                <input type="hide" value="${eventToUpdate.id}" name="id" style="display:none">
+                <input type="hide" value="PUT" name="operation" style="display:none">
+                
+                <div class="field">
+                    <label for="name">Nome:</label>
+                    <input type="text" class="form-input" id="name" name="name" value="${eventToUpdate.customer.name}" placeholder="Digite seu Nome">
+                </div>
+    
+                <div class="field">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" class="form-input" id="cpf" name="cpf" value="${eventToUpdate.customer.cpf}" placeholder="Digite seu CPF">
+                </div>
+
+                <div class="field">
+                    <label for="phone_number">Telefone:</label>
+                    <input type="text" class="form-input" id="phone_number" name="phone_number" value="${eventToUpdate.customer.phone_number}" placeholder="Digite seu Telefone">
+                </div>
+
+                <div class="field">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-input" id="email" name="email" value="${eventToUpdate.customer.email}" placeholder="Digite seu E-mail">
+                </div>
+                
+                <h2>Evento</h2>
+                <div class="field">
+                    <label for="name">Nome:</label>
+                    <input type="text" class="form-input" id="name" name="name" value="${eventToUpdate.name}" placeholder="Digite o Nome do Evento">
+                </div>
+
+                <div class="field">
+                    <label for="value">Valor:</label>
+                    <input type="text" class="form-input" id="value" name="value" value="${eventToUpdate.value}" placeholder="Digite o Valor">
+                </div>
+    
+                <h2> Endereço </h2>
+
+                <div class="field">
+                    <label for="street">Rua:</label>
+                    <input type="text" class="form-input" id="street" name="street" value="${eventToUpdate.address.street}" placeholder="Digite a Rua">
+                </div>
+
+                <div class="field">
+                    <label for="number">Número:</label>
+                    <input type="text" class="form-input" id="number" name="number" value="${eventToUpdate.address.number}">
+                </div>
+
+                <div class="field">
+                    <label for="neighborhood">Bairro:</label>
+                    <input type="text" class="form-input" id="neighborhood" name="neighborhood" value="${eventToUpdate.address.neighborhood}">
+                </div>
+
+                <div class="field">
+                    <label for="city">Cidade:</label>
+                    <input type="text" class="form-input" id="city" name="city" value="${eventToUpdate.address.city}">
+                </div>
+                <input type="submit" class="btn-input" value="Salvar">            
+            </form>	  
+	</div>
+	<script src="javas.js"></script>
   </body>
 </html>
