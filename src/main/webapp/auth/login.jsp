@@ -2,25 +2,27 @@
     <head>
         <title>J-Evento</title>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="Estrutura.css">
-
+        <link rel="stylesheet" type="text/css" href="../css/login.css">
     </head>
 
     <body>
-        <form action="/auth" class="formulario" method="post"> 
-            <p> Login </p>
-
-        <div class="field">
-                <label for="email">E-mail:</label>
-                <input type="email" class="form-input" id="email" name="email" placeholder="Digite seu E-mail">
-            </div>
-    
-        <div class="field">
-            <label for="password">Senha:</label>
-            <input type="password" class="form-input" id="password" name="password" placeholder="Digite sua Senha">
+       <div class="box">
+            <h2> Login </h2>
+            
+            <form action="/auth" class="formulario" method="post"> 
+            
+        <div class="inputBox">
+            <input type="email" name="" required="">
+            <label>E-mail:</label>                
         </div>
-           
+    
+        <div class="inputBox">
+            <input type="password" name="" required="">
+            <label>Senha:</label>            
+        </div>           
+                
             <input type="submit" class="btn-input" value="Login" onclick="msg()">
           </form>
+        </div>
     </body>
 </html>
