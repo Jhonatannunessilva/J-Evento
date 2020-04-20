@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>J-Evento</title>    
-    <link href="style.css" rel="stylesheet">
+    
   </head>
   <body>
 	<nav class="nav-main">
@@ -27,7 +27,7 @@
 				<a href="${pageContext.request.contextPath}/customer/customers.jsp">Clientes</a>
 			</li>
 			<li>				
-				<a href="${pageContext.request.contextPath}/user/users.jsp">Funcion√°rios</a>
+				<a href="${pageContext.request.contextPath}/user/users.jsp">Funcion·rios</a>
 			</li>
 			<li>				
 				<a href="${pageContext.request.contextPath}/event/create.jsp">Novo Evento</a>
@@ -36,18 +36,18 @@
 				<a href="${pageContext.request.contextPath}/customer/create.jsp">Cadastro de Cliente</a>
 			</li>
 			<li>				
-				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionario</a>
+				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcion·rio</a>
 			</li>
 		</ul>
 	</div>
         <div class="main">
-            <h2>Funcion√°rios</h2>
+            <h2>Funcion·rios</h2>
             <table class="table">
                 <tr>
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Senha</th>
-                    <th>A√ß√µes</th>
+                    <th>AÁıes</th>
                 </tr>
                 <c:forEach items="${users}" var="user">
 
