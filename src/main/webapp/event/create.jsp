@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">    
         <title>J-Evento</title>    
-        <link href="style.css" rel="stylesheet">
+        
     </head>
     <body>
         <nav class="nav-main">
@@ -27,7 +27,7 @@
                     <a href="${pageContext.request.contextPath}/customer/customers.jsp">Clientes</a>
                 </li>
                 <li>				
-                    <a href="${pageContext.request.contextPath}/user/users.jsp">FuncionÃ¡rios</a>
+                    <a href="${pageContext.request.contextPath}/user/users.jsp">Funcionários</a>
                 </li>
                 <li>				
                     <a href="${pageContext.request.contextPath}/event/create.jsp">Novo Evento</a>
@@ -36,7 +36,7 @@
                     <a href="${pageContext.request.contextPath}/customer/create.jsp">Cadastro de Cliente</a>
                 </li>
                 <li>				
-                    <a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionario</a>
+                    <a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionário</a>
                 </li>
             </ul>
         </div>
@@ -90,7 +90,7 @@
                     <input type="text" class="form-input" id="value" name="value" placeholder="Digite o Valor">
                 </div>
 
-                <p> EndereÃ§o </p>
+                <p> Endereço </p>
 
                 <div class="field">
                     <label for="street">Rua:</label>
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="number">NÃºmero:</label>
+                    <label for="number">Número:</label>
                     <input type="text" class="form-input" id="number" name="number">
                 </div>
 

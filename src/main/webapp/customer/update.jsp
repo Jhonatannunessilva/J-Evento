@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>J-Evento</title>    
-    <link href="style.css" rel="stylesheet">
+    
   </head>
   <body>
 	<nav class="nav-main">
@@ -27,7 +27,7 @@
 				<a href="${pageContext.request.contextPath}/customer/customers.jsp">Clientes</a>
 			</li>
 			<li>				
-				<a href="${pageContext.request.contextPath}/user/users.jsp">Funcion√°rios</a>
+				<a href="${pageContext.request.contextPath}/user/users.jsp">Funcion·rios</a>
 			</li>
 			<li>				
 				<a href="${pageContext.request.contextPath}/event/create.jsp">Novo Evento</a>
@@ -36,7 +36,7 @@
 				<a href="${pageContext.request.contextPath}/customer/create.jsp">Cadastro de Cliente</a>
 			</li>
 			<li>				
-				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionario</a>
+				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcion·rio</a>
 			</li>
 		</ul>
 	</div>
@@ -47,22 +47,22 @@
                     <input type="hide" value="PUT" name="operation">
         <div class="field">
             <label for="name">Nome:</label>
-            <input type="text" class="form-input" id="name" name="name" value="${customerToUpdate.name}" placeholder="Digite seu Nome">
+            <input type="text" class="form-input" id="name" name="name" value="${customerToUpdate.name}" required="">
         </div>
     
         <div class="field">
             <label for="cpf">CPF:</label>
-            <input type="text" class="form-input" id="cpf" name="cpf" value="${customerToUpdate.cpf}" placeholder="Digite seu CPF">
+            <input type="text" class="form-input" id="cpf" name="cpf" value="${customerToUpdate.cpf}" required="">
         </div>
 
         <div class="field">
                 <label for="phone_number">Telefone:</label>
-                <input type="text" class="form-input" id="phone_number" name="phone_number" value="${customerToUpdate.phone_number}" placeholder="Digite seu Telefone">
+                <input type="text" class="form-input" id="phone_number" name="phone_number" value="${customerToUpdate.phone_number}" required="">
         </div>
             
         <div class="field">
             <label for="email">E-mail:</label>
-            <input type="email" class="form-input" id="email" name="email" value="${customerToUpdate.email}" placeholder="Digite seu E-mail">
+            <input type="email" class="form-input" id="email" name="email" value="${customerToUpdate.email}" required="">
     </div>
             <input type="submit" class="btn-input" value="Salvar">
           </form>

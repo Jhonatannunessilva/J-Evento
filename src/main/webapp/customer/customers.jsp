@@ -4,53 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>J-Evento</title>    
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/form1.css">
   </head>
-    <body>
-	<nav class="nav-main">
-		<a class="logo" href="#">J-Evento</a>
-		<ul class="nav-menu">
-			<li>				
-				<a href="${pageContext.request.contextPath}/users?userId=${userLogged}">Alterar Usuário</a>
-			</li>
-			<li>				
-				<a href="${pageContext.request.contextPath}/logout">Sair</a>
-			</li>
-		</ul>
-	</nav>
-	<div class="sidebar">
-		<ul class="sidebar-nav">
-			<li>				
-				<a href="${pageContext.request.contextPath}/event/events.jsp">Eventos</a>
-			</li>
-			<li>				
-				<a href="${pageContext.request.contextPath}/customer/customers.jsp">Clientes</a>
-			</li>
-			<li>				
-				<a href="${pageContext.request.contextPath}/user/users.jsp">FuncionÃ¡rios</a>
-			</li>
-			<li>				
-				<a href="${pageContext.request.contextPath}/event/create.jsp">Novo Evento</a>
-			</li>
-			<li>				
-				<a href="${pageContext.request.contextPath}/customer/create.jsp">Cadastro de Cliente</a>
-			</li>
-			<li>				
-				<a href="${pageContext.request.contextPath}/user/create.jsp">Cadastro de Funcionario</a>
-			</li>
-		</ul>
-	</div>
-        <div class="main">
+  <body>
+        <div class="login-box">
+            <img src="../image/user.png" class="user">
             <h2>Clientes</h2>
-            <table class="table">
-                <tr>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Telefone</th>
-                    <th>E-mail</th>
-                    <th>AÃ§Ãµes</th>
-
-                </tr>
+            <form action="${pageContext.request.contextPath}/users" class="formulario" method="post">
+            
+                    <p>Nome</p>
+                    <input type="text" name="nome" required="">
+                    <p>CPF</p>
+                    <input type="text" name="cpf" required="">
+                    <p>Telefone</p>
+                    <input type="text" name="Telefone" required="">
+                    <p>E-mail</p>
+                    <input type="email" name="email" required="">    
+                    <p>Ações</p>
+                    <input type="text" name="Ações" required="">              
+                    
+            
                 <c:forEach items="${customers}" var="customer">
 
                     <tr>
@@ -71,9 +44,8 @@
                             <button> <a href="${pageContext.request.contextPath}/customers?customerId=${customer.id}&operation=DELETE">Excluir</a></button>
                         </td>
                     </tr>
-                </c:forEach>
-            </table>
-            </form>
+                </c:forEach>          
         </div>
+  </form>            
     </body>
 </html>
