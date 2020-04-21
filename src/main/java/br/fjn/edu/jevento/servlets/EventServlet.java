@@ -30,24 +30,30 @@ public class EventServlet extends HttpServlet {
         ServletContext context = getServletContext();
         String operation = req.getParameter("operation");
         
-        List<Customer> customers = (List<Customer>) context.getAttribute("customers");
-        
-        Customer customerToEvent = new Customer();
+        String customerId = req.getParameter("customerId");
         String name_customer = req.getParameter("name_customer");
         String cpf = req.getParameter("cpf");
         String phone_number = req.getParameter("phone_number");
         String email = req.getParameter("email");
         
-        for (Customer customer : customers) {
-            if(customer.getCpf().equalsIgnoreCase(cpf)){
-                customerToEvent = customer;
-                break;
-            }
+        List<Customer> customers = (List<Customer>) context.getAttribute("customers");
+        
+        if (customers == null) {
+            customers = new LinkedList<Customer>();
         }
         
-        if (customerToEvent.getId() == null){
+        Customer customerToEvent = new Customer();
+        
+        if (customerId == null){
             customerToEvent = new Customer(name_customer, cpf, phone_number, email);
             customers.add(customerToEvent);
+        }else {
+            for (Customer customer : customers) {
+                if(customer.getId().equalsIgnoreCase(customerId)){
+                    customerToEvent = customer;
+                    break;
+                }
+            }
         }
         
         String street =  req.getParameter("street");
@@ -108,6 +114,11 @@ public class EventServlet extends HttpServlet {
                     context.setAttribute("events", events);
                     
                     resp.sendRedirect("home.jsp");
+                    break;
+                }else if (operation == "GET"){
+                    req.setAttribute("eventView", event);
+                    
+                    req.getRequestDispatcher("event/view.jsp").forward(req, resp);
                     break;
                 }else {
                     req.setAttribute("eventToUpdate", event);
